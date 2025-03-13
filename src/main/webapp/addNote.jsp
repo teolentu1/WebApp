@@ -55,6 +55,19 @@
     input[type="submit"]:hover {
       background-color: #a44;
     }
+    button {
+      background-color: #d66;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #a44;
+    }
     nav ul {
       list-style-type: none;
       padding: 0;
@@ -76,28 +89,24 @@
 <body>
   <div class="container">
     <h2>Add a New Note</h2>
-    <form action="uploadNote.jsp" method="post" functype="multipart/form-data">
-        <label for="title">Title:</label>
-        <input type="text" id="title" name="title" required><br><br>
+    <form action="addNote" method="post">
+      <label for="title">Title:</label>
+      <input type="text" name="title" id="title" required><br>
 
-        <label for="content">Content:</label>
-        <textarea id="content" name="content" required></textarea><br><br>
+      <label for="content">Content:</label><br>
+      <textarea name="content" id="content" rows="4" required></textarea><br>
 
-        <label for="url">URL (Optional):</label>
-        <input type="text" id="url" name="url"><br><br>
+      <label for="url">URL (Optional):</label>
+      <input type="text" name="url" id="url"><br>
 
-        <label for="image">Image (Optional):</label>
-        <input type="file" id="image" name="image"><br><br>
+      <label for="imagePath">Image Address (Optional):</label>
+      <input type="text" name="imagePath" id="imagePath"><br>
 
-        <input type="submit" value="Upload Note">
+      <input type="submit" value="Add Note">
     </form>
 
     <br>
-    <nav>
-      <ul>
-        <li><a href="index.html">Cancel</a></li>
-      </ul>
-    </nav>
+    <button onclick="window.history.back();">Back</button>
   </div>
 </body>
 </html>

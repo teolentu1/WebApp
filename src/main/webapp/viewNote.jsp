@@ -85,12 +85,6 @@
         <% } else { %>
             <p>Note not found.</p>
         <% } %>
-
-        <% if (selectedNote.getImagePath() != null && !selectedNote.getImagePath().isEmpty()) { %>
-            <br>
-            <img src="<%= request.getContextPath() + "/" + selectedNote.getImagePath() %>" width="100"><br>
-        <% } %>
-
         <br>
         <input type="button" value="Back to Notes" onclick="window.location.href='indexNotes.jsp'">
     </div>
