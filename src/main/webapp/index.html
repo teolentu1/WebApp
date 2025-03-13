@@ -3,20 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <title>Patient Data</title>
+  <style>
+    body {
+      background-color: #fce0e0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 80%;
+      max-width: 600px;
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    nav ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    nav ul li {
+      margin: 10px 0;
+    }
+    nav a {
+      text-decoration: none;
+      color: #d66;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #a44;
+    }
+  </style>
 </head>
 <body>
-<h2>Welcome to the Patient Data App</h2>
-
-<nav>
-  <ul>
-    <li>
-      <a href="patientList.html">View the Patient ID List</a>
-    </li>
-    <li>
-      <a href="search.html">Search</a>
-    </li>
-  </ul>
-</nav>
-
+<div class="container">
+  <h2>Welcome to Teo's Note App</h2>
+  <nav>
+    <ul>
+      <li><a href="indexNotes.jsp">View All Notes</a></li>
+      <li><a href="addNote.jsp">Create a Note</a></li>
+      <li><a href="search.html">Search</a></li>
+    </ul>
+  </nav>
+</div>
 </body>
 </html>

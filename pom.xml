@@ -5,7 +5,7 @@
 
   <groupId>uk.ac.ucl</groupId>
 
-  <artifactId>WebApp</artifactId>
+  <artifactId>NotesApp</artifactId>
 
   <version>1.2</version>
 
@@ -23,6 +23,7 @@
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <main.class>uk.ac.ucl.main.Main</main.class>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <libs.dir>${project.basedir}/libs</libs.dir>
   </properties>
 
   <build>
@@ -105,7 +106,15 @@
         </configuration>
       </plugin>
     </plugins>
-  </build>
+      <resources>
+        <resource>
+          <directory>${libs.dir}</directory>
+          <includes>
+            <include>*.jar</include>
+          </includes>
+        </resource>
+      </resources>
+    </build>
 
   <dependencies>
     <!-- Embedded tomcat -->
@@ -139,6 +148,12 @@
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
       <version>2.16.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20230618</version>
     </dependency>
   </dependencies>
 
