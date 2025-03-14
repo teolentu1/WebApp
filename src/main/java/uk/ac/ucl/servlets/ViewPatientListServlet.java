@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import uk.ac.ucl.model.Model;
 import uk.ac.ucl.model.ModelFactory;
+import uk.ac.ucl.model.Note;
 
 
 import java.io.IOException;
@@ -26,10 +27,10 @@ public class ViewPatientListServlet extends HttpServlet
   {
     // Get the data from the model
     Model model = ModelFactory.getModel();
-    List<String> patientNames = model.getPatientNames();
+    List<Note> notesList = model.getNotes();
     // Then add the data to the request object that will be sent to the Java Server Page, so that
     // the JSP can access the data (a Java data structure).
-    request.setAttribute("patientNames", patientNames);
+    request.setAttribute("notesList", notesList);
 
     // Invoke the JSP.
     // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.

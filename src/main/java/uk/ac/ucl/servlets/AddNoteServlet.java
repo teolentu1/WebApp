@@ -1,5 +1,7 @@
 package uk.ac.ucl.servlets;
 
+import uk.ac.ucl.model.Model;
+import uk.ac.ucl.model.ModelFactory;
 import uk.ac.ucl.model.Note;
 import uk.ac.ucl.model.NoteIndex;
 import jakarta.servlet.ServletException;
@@ -9,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/addNote")
 public class AddNoteServlet extends HttpServlet {

@@ -1,45 +1,53 @@
 package uk.ac.ucl.model;
 
-import java.io.Reader;
-import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class Model
 {
-  // The example code in this class should be replaced by your Model class code.
-  // The data should be stored in a suitable data structure.
+  private final ObjectMapper objectMapper = new ObjectMapper();
 
   // all functions for interacting with the website
-  public List<String> getPatientNames()
+  public List<Note> getNotes()
   {
-    return readFile("data/patients100.csv");
+    return readFile("data/notes.json");
   }
 
   // This method illustrates how to read csv data from a file.
   // The data files are stored in the root directory of the project (the directory your project is in),
   // in the directory named data.
-  public List<String> readFile(String fileName)
-  {
-    List<String> data = new ArrayList<>();
+  public List<Note> readFile(String fileName) {
+    List<Note> notes = new ArrayList<>();
+    File file = new File(fileName);
 
-    try (Reader reader = new FileReader(fileName);
-         CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT))
-    {
-      for (CSVRecord csvRecord : csvParser)
-      {
-        // The first row of the file contains the column headers, so is not actual data.
-        data.add(csvRecord.get(0));
+    try {
+      if (file.exists()) {
+        // Read notes from the file
+        notes = objectMapper.readValue(file, new TypeReference<List<Note>>() {});
+      } else {
+        // File doesn't exist: create an empty JSON file
+        file.getParentFile().mkdirs(); // Ensure parent directories exist
+        file.createNewFile();
+        objectMapper.writeValue(file, notes); // Initialize with an empty list
       }
-    } catch (IOException e)
-    {
+    } catch (IOException e) {
       e.printStackTrace();
     }
-    return data;
+
+    return notes;
+  }
+
+  public void writeToFile(String fileName, List<Note> notes) {
+    try {
+      objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(fileName), notes);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   // This also returns dummy data. The real version should use the keyword parameter to search

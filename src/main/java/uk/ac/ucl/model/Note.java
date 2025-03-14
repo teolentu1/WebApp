@@ -4,9 +4,11 @@ import java.io.Serializable;
 
 public class Note implements Serializable {
     private String title;
-    private String content;  // Can be plain text or other data
+    private String content;
     private String url;
-    private String imagePath;  // Path to an image file (if applicable)
+    private String imagePath;
+
+    public Note() {}
 
     public Note(String title, String content) {
         this.title = title;
@@ -41,7 +43,19 @@ public class Note implements Serializable {
 
     @Override
     public String toString() {
-        return "Note: " + title + "\nContent: " + content + (url != null ? "\nURL: " + url : "")
-                + (imagePath != null ? "\nImage: " + imagePath : "");
+        StringBuilder builder = new StringBuilder();
+        builder.append("Note Details:\n");
+        builder.append("  Title: ").append(title).append("\n");
+        builder.append("  Content: ").append(content).append("\n");
+
+        if (url != null && !url.isEmpty()) {
+            builder.append("  URL: ").append(url).append("\n");
+        }
+
+        if (imagePath != null && !imagePath.isEmpty()) {
+            builder.append("  Image Path: ").append(imagePath).append("\n");
+        }
+
+        return builder.toString();
     }
 }
