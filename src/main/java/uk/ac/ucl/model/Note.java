@@ -1,15 +1,15 @@
 package uk.ac.ucl.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Note implements Serializable {
     private String title;
     private String content;
-    private String url;
-    private String imagePath;
-    private List<String> categories;
-    private static List<String> allCategories;
+    private String url = "";
+    private String imagePath = "";
+    private List<String> categories = new ArrayList<>();
 
     public Note() {}
 
@@ -65,8 +65,6 @@ public class Note implements Serializable {
     public List<String> getCategories() { return categories; }
     public void setCategories(List<String> categories) { this.categories = categories; }
 
-    public static List<String> getAllCategories() { return allCategories; }
-    public static void setAllCategories(List<String> allCategories) { Note.allCategories = allCategories; }
 
 //    @Override
 //    public String toString() {

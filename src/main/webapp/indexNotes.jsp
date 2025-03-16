@@ -65,19 +65,22 @@
 </head>
 <body>
     <div class="container">
-        <h2>Your Notes</h2>
-        <ul>
-            <% for (Note note : NoteIndex.getInstance().getNotes()) { %>
-            <li>
-                <a href="viewNote.jsp?title=<%= java.net.URLEncoder.encode(note.getTitle(), "UTF-8") %>">
-                    <%= note.getTitle() %>
-                </a>
-            </li>
-            <% } %>
-        </ul>
+            <h2>Your Notes</h2>
+            <button onclick="window.location.href='addNote.jsp'">Add New Note</button>
+            <button onclick="window.location.href='indexNotesCategories.jsp'">See Notes by Category</button>
 
-        <br>
-        <input type="button" value="Back to Index" onclick="window.location.href='index.html'">
-    </div>
+            <h3>All Notes</h3>
+            <ul>
+                <% for (Note note : NoteIndex.getInstance().getNotes()) { %>
+                    <li>
+                        <a href="viewNote.jsp?title=<%= java.net.URLEncoder.encode(note.getTitle(), "UTF-8") %>">
+                            <%= note.getTitle() %>
+                        </a>
+                    </li>
+                <% } %>
+            </ul>
+
+            <br><button onclick="window.history.back();">Back</button>
+        </div>
 </body>
 </html>

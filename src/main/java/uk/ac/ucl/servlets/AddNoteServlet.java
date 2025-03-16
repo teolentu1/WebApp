@@ -12,6 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Arrays;
+
 
 @WebServlet("/addNote")
 public class AddNoteServlet extends HttpServlet {
@@ -22,6 +24,10 @@ public class AddNoteServlet extends HttpServlet {
         String content = request.getParameter("content");
         String url = request.getParameter("url");
         String imagePath = request.getParameter("imagePath");
+
+        // Get selected categories (may be null if none are selected)
+        String[] selectedCategories = request.getParameterValues("categories");
+        List<String> categories = (selectedCategories != null) ? Arrays.asList(selectedCategories) : List.of();
 
         // Create and add note
         Note newNote = new Note(title, content, url, imagePath);

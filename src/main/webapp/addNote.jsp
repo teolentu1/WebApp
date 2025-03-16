@@ -1,3 +1,4 @@
+<%@ page import="uk.ac.ucl.model.NoteIndex, java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,6 +102,20 @@
 
       <label for="imagePath">Image Address (Optional):</label>
       <input type="text" name="imagePath" id="imagePath"><br>
+
+      <label for="categories">Select Categories:</label>
+        <div class="category-list">
+          <%
+            NoteIndex noteIndex = NoteIndex.getInstance();
+            List<String> allCategories = noteIndex.getAllCategories();
+            for (String category : allCategories) {
+          %>
+            <input type="checkbox" name="categories" value="<%= category %>">
+            <label><%= category %></label>
+          <%
+            }
+          %>
+        </div>
 
       <input type="submit" value="Add Note">
     </form>

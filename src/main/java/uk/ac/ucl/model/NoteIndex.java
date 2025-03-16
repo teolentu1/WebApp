@@ -19,13 +19,24 @@ public class NoteIndex {
         // Load data from JSON
         Map<String, Object> data = model.readFile("data/notes.json");
 
-        // Load notes
-        notes = (List<Note>) data.getOrDefault("notes", new ArrayList<>());
+        // Load notes and convert raw maps to Note objects
+        List<Map<String, Object>> rawNotes = (List<Map<String, Object>>) data.get("notes");
+        notes = new ArrayList<>();
+        if (rawNotes != null) {
+            for (Map<String, Object> noteMap : rawNotes) {
+                String title = (String) noteMap.get("title");
+                String content = (String) noteMap.get("content");
+                String url = (String) noteMap.get("url");
+                String imagePath = (String) noteMap.get("imagePath");
+                List<String> categories = (List<String>) noteMap.get("categories");
+                notes.add(new Note(title, content));
+            }
+        }
 
         // Load categories
         allCategories = (List<String>) data.getOrDefault("allCategories", new ArrayList<>());
-        Note.setAllCategories(allCategories);
     }
+
 
     public static NoteIndex getInstance() {
         if (instance == null) {

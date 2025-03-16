@@ -27,10 +27,10 @@ public class ViewPatientListServlet extends HttpServlet
   {
     // Get the data from the model
     Model model = ModelFactory.getModel();
-    List<Note> notesList = model.getNotes();
+    //List<Note> notesList = model.getNotes();
     // Then add the data to the request object that will be sent to the Java Server Page, so that
     // the JSP can access the data (a Java data structure).
-    request.setAttribute("notesList", notesList);
+    //request.setAttribute("notesList", notesList);
 
     // Invoke the JSP.
     // A JSP page is actually converted into a Java class, so behind the scenes everything is Java.
