@@ -68,21 +68,21 @@ public class Note implements Serializable {
     public static List<String> getAllCategories() { return allCategories; }
     public static void setAllCategories(List<String> allCategories) { Note.allCategories = allCategories; }
 
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Note Details:\n");
-        builder.append("  Title: ").append(title).append("\n");
-        builder.append("  Content: ").append(content).append("\n");
-
-        if (url != null && !url.isEmpty()) {
-            builder.append("  URL: ").append(url).append("\n");
-        }
-
-        if (imagePath != null && !imagePath.isEmpty()) {
-            builder.append("  Image Path: ").append(imagePath).append("\n");
-        }
-
-        return builder.toString();
-    }
+//    @Override
+//    public String toString() {
+//        StringBuilder builder = new StringBuilder();
+//        builder.append("Note Details:\n");
+//        builder.append("  Title: ").append(title).append("\n");
+//        builder.append("  Content: ").append(content).append("\n");
+//
+//        if (url != null && !url.isEmpty()) {
+//            builder.append("  URL: ").append(url).append("\n");
+//        }
+//
+//        if (imagePath != null && !imagePath.isEmpty()) {
+//            builder.append("  Image Path: ").append(imagePath).append("\n");
+//        }
+//
+//        return builder.toString();
+//    }
 }

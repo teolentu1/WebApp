@@ -1,63 +1,50 @@
 package uk.ac.ucl.model;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class Model
-{
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
+
+public class Model {
   private final ObjectMapper objectMapper = new ObjectMapper();
+  private static final String FILE_PATH = "data/notes.json";
 
-  // all functions for interacting with the website
-  public List<Note> getNotes()
-  {
-    return readFile("data/notes.json");
-  }
-
-  // This method illustrates how to read csv data from a file.
-  // The data files are stored in the root directory of the project (the directory your project is in),
-  // in the directory named data.
-  public List<Note> readFile(String fileName) {
-    List<Note> notes = new ArrayList<>();
+  // Read both notes and categories from the JSON file
+  public Map<String, Object> readFile(String fileName) {
     File file = new File(fileName);
+    Map<String, Object> data = new HashMap<>();
 
     try {
       if (file.exists()) {
-        // Read notes from the file
-        notes = objectMapper.readValue(file, new TypeReference<List<Note>>() {});
+        // Read file as Map<String, Object>
+        data = objectMapper.readValue(file, new TypeReference<Map<String, Object>>() {});
       } else {
-        // File doesn't exist: create an empty JSON file
-        file.getParentFile().mkdirs(); // Ensure parent directories exist
+        // File does not exist, create default structure
+        file.getParentFile().mkdirs();
         file.createNewFile();
-        objectMapper.writeValue(file, notes); // Initialize with an empty list
+
+        // Initialize empty lists
+        data.put("notes", new ArrayList<Note>());
+        data.put("allCategories", new ArrayList<String>());
+
+        // Save empty structure to file
+        writeToFile(fileName, data);
       }
     } catch (IOException e) {
       e.printStackTrace();
     }
 
-    return notes;
+    return data;
   }
 
-  public void writeToFile(String fileName, List<Note> notes) {
+  // Write both notes and categories to the JSON file
+  public void writeToFile(String fileName, Map<String, Object> data) {
     try {
-      objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(fileName), notes);
+      objectMapper.writerWithDefaultPrettyPrinter().writeValue(new File(fileName), data);
     } catch (IOException e) {
       e.printStackTrace();
     }
-  }
-
-  // This also returns dummy data. The real version should use the keyword parameter to search
-  // the data and return a list of matching items.
-  public List<String> searchFor(String keyword)
-  {
-    return List.of("Search keyword is: "+ keyword, "result1", "result2", "result3");
-  }
-
-  public void getNote() {
-
   }
 }
