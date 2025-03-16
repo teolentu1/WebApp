@@ -1,12 +1,15 @@
 package uk.ac.ucl.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Note implements Serializable {
     private String title;
     private String content;
     private String url;
     private String imagePath;
+    private List<String> categories;
+    private static List<String> allCategories;
 
     public Note() {}
 
@@ -28,6 +31,24 @@ public class Note implements Serializable {
         this.imagePath = imagePath;
     }
 
+    public Note(String title, String content, List<String> categories) {
+        this.title = title;
+        this.content = content;
+    }
+
+    public Note(String title, String content, String url, List<String> categories) {
+        this.title = title;
+        this.content = content;
+        this.url = url;
+    }
+
+    public Note(String title, String content, String url, String imagePath, List<String> categories) {
+        this.title = title;
+        this.content = content;
+        this.url = url;
+        this.imagePath = imagePath;
+    }
+
     // Getters and setters
     public String getTitle() { return title; }
     public void setTitle(String title) { this.title = title; }
@@ -40,6 +61,12 @@ public class Note implements Serializable {
 
     public String getImagePath() { return imagePath; }
     public void setImagePath(String imagePath) { this.imagePath = imagePath; }
+
+    public List<String> getCategories() { return categories; }
+    public void setCategories(List<String> categories) { this.categories = categories; }
+
+    public static List<String> getAllCategories() { return allCategories; }
+    public static void setAllCategories(List<String> allCategories) { Note.allCategories = allCategories; }
 
     @Override
     public String toString() {

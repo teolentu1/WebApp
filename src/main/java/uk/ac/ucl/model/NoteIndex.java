@@ -8,7 +8,6 @@ import java.util.Map;
 public class NoteIndex {
     private static NoteIndex instance;  // Singleton instance
     private List<Note> notes;
-    private Map<String, Category> categories;
 
     private NoteIndex() {
         // Load notes from the JSON file on startup
@@ -46,12 +45,6 @@ public class NoteIndex {
 
     public Note getNoteByTitle(String title) {
         return notes.stream().filter(n -> n.getTitle().equals(title)).findFirst().orElse(null);
-    }
-
-    public Map<String, Category> getCategories() { return categories; }
-
-    public List<Note> getNotesByCategory(String categoryName) {
-        return categories.containsKey(categoryName) ? categories.get(categoryName).getNotes() : new ArrayList<>();
     }
 
 }
