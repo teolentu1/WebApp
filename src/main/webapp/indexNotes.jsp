@@ -48,7 +48,8 @@
         a:hover {
             color: #a44;
         }
-        input[type="button"] {
+        /* Updated button styles */
+        input[type="button"], button {
             background-color: #d66;
             color: white;
             padding: 10px 20px;
@@ -58,29 +59,30 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        input[type="button"]:hover {
+        input[type="button"]:hover, button:hover {
             background-color: #a44;
         }
     </style>
 </head>
 <body>
     <div class="container">
-            <h2>Your Notes</h2>
-            <button onclick="window.location.href='addNote.jsp'">Add New Note</button>
-            <button onclick="window.location.href='indexNotesCategories.jsp'">See Notes by Category</button>
+        <h2>Your Notes</h2>
+        <!-- Styled buttons -->
+        <button onclick="window.location.href='addNote.jsp'">Add New Note</button>
+        <button onclick="window.location.href='indexNotesCategories.jsp'">See Notes by Category</button>
 
-            <h3>All Notes</h3>
-            <ul>
-                <% for (Note note : NoteIndex.getInstance().getNotes()) { %>
-                    <li>
-                        <a href="viewNote.jsp?title=<%= java.net.URLEncoder.encode(note.getTitle(), "UTF-8") %>">
-                            <%= note.getTitle() %>
-                        </a>
-                    </li>
-                <% } %>
-            </ul>
+        <h3>All Notes</h3>
+        <ul>
+            <% for (Note note : NoteIndex.getInstance().getNotes()) { %>
+                <li>
+                    <a href="viewNote.jsp?title=<%= java.net.URLEncoder.encode(note.getTitle(), "UTF-8") %>">
+                        <%= note.getTitle() %>
+                    </a>
+                </li>
+            <% } %>
+        </ul>
 
-            <br><button onclick="window.history.back();">Back</button>
-        </div>
+        <br><button onclick="window.history.back();">Back</button>
+    </div>
 </body>
 </html>

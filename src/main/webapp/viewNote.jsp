@@ -73,7 +73,6 @@
         <% if (selectedNote != null) { %>
             <h2><%= selectedNote.getTitle() %></h2>
             <p><%= selectedNote.getContent() %></p>
-
             <% if (selectedNote.getUrl() != null && !selectedNote.getUrl().isEmpty()) { %>
                 <a href="<%= selectedNote.getUrl() %>" target="_blank">Open URL</a><br>
             <% } %>

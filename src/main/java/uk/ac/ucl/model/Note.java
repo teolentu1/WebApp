@@ -34,12 +34,14 @@ public class Note implements Serializable {
     public Note(String title, String content, List<String> categories) {
         this.title = title;
         this.content = content;
+        this.categories = categories;
     }
 
     public Note(String title, String content, String url, List<String> categories) {
         this.title = title;
         this.content = content;
         this.url = url;
+        this.categories = categories;
     }
 
     public Note(String title, String content, String url, String imagePath, List<String> categories) {
@@ -47,6 +49,7 @@ public class Note implements Serializable {
         this.content = content;
         this.url = url;
         this.imagePath = imagePath;
+        this.categories = categories;
     }
 
     // Getters and setters

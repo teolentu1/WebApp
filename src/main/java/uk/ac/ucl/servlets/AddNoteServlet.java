@@ -24,13 +24,14 @@ public class AddNoteServlet extends HttpServlet {
         String content = request.getParameter("content");
         String url = request.getParameter("url");
         String imagePath = request.getParameter("imagePath");
-
-        // Get selected categories (may be null if none are selected)
         String[] selectedCategories = request.getParameterValues("categories");
+        System.out.println("Selected categories: " + Arrays.toString(selectedCategories));
+
         List<String> categories = (selectedCategories != null) ? Arrays.asList(selectedCategories) : List.of();
+        System.out.println("List Selected categories: " + categories);
 
         // Create and add note
-        Note newNote = new Note(title, content, url, imagePath);
+        Note newNote = new Note(title, content, url, imagePath, categories);
         NoteIndex.getInstance().addNote(newNote);
 
         // Redirect to the index page to show the updated notes list

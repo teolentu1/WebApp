@@ -4,7 +4,31 @@
     "content" : "hi",
     "url" : "",
     "imagePath" : "",
+    "categories" : [ "personal" ]
+  }, {
+    "title" : "groceries",
+    "content" : "lemons",
+    "url" : "",
+    "imagePath" : "",
+    "categories" : [ "personal" ]
+  }, {
+    "title" : "presentation",
+    "content" : "assign roles",
+    "url" : "",
+    "imagePath" : "",
+    "categories" : [ "hw" ]
+  }, {
+    "title" : "hello",
+    "content" : "pdf",
+    "url" : "",
+    "imagePath" : "",
     "categories" : [ ]
+  }, {
+    "title" : "new",
+    "content" : "one",
+    "url" : "",
+    "imagePath" : "",
+    "categories" : [ "birthdays" ]
   } ],
-  "allCategories" : [ ]
+  "allCategories" : [ "personal", "hw", "birthdays" ]
 }

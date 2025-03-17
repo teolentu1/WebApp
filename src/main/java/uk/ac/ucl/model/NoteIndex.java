@@ -29,7 +29,7 @@ public class NoteIndex {
                 String url = (String) noteMap.get("url");
                 String imagePath = (String) noteMap.get("imagePath");
                 List<String> categories = (List<String>) noteMap.get("categories");
-                notes.add(new Note(title, content));
+                notes.add(new Note(title, content, url, imagePath, categories));
             }
         }
 
@@ -62,11 +62,24 @@ public class NoteIndex {
         return notes;
     }
 
+    public Map<String, List<Note>> getNotesByCategory() {
+        Map<String, List<Note>> categorizedNotes = new HashMap<>();
+
+        for (Note note : notes) {
+            for (String category : note.getCategories()) {
+                categorizedNotes
+                        .computeIfAbsent(category, k -> new ArrayList<>())
+                        .add(note);
+            }
+        }
+        return categorizedNotes;
+    }
+
     public List<String> getAllCategories() {
         return allCategories;
     }
 
-    private void saveNotes() {
+    public void saveNotes() {
         Model model;
         try {
             model = ModelFactory.getModel();

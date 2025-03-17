@@ -85,6 +85,28 @@
     nav a:hover {
       color: #a44;
     }
+    .category-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .category-list input[type="checkbox"] {
+      margin-right: 3px;
+      vertical-align: middle;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .category-list label {
+      margin-right: 15px;
+      vertical-align: middle;
+      display: inline-flex;
+      align-items: center;
+    }
   </style>
 </head>
 <body>
@@ -104,18 +126,20 @@
       <input type="text" name="imagePath" id="imagePath"><br>
 
       <label for="categories">Select Categories:</label>
-        <div class="category-list">
+      <div class="category-list">
           <%
-            NoteIndex noteIndex = NoteIndex.getInstance();
-            List<String> allCategories = noteIndex.getAllCategories();
-            for (String category : allCategories) {
+              NoteIndex noteIndex = NoteIndex.getInstance();
+              List<String> allCategories = noteIndex.getAllCategories();
+              for (String category : allCategories) {
           %>
-            <input type="checkbox" name="categories" value="<%= category %>">
-            <label><%= category %></label>
+              <input type="checkbox" name="categories" value="<%= category %>" id="<%= category %>">
+              <label for="<%= category %>"><%= category %></label>
           <%
-            }
+              }
           %>
-        </div>
+      </div>
+
+
 
       <input type="submit" value="Add Note">
     </form>
