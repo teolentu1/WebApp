@@ -58,6 +58,14 @@ public class NoteIndex {
         saveNotes();
     }
 
+    public void deleteNote(Note note) {
+        System.out.println("Deleting note: " + note.getTitle());
+        System.out.println("Notes: " + note);
+        notes.remove(note);
+        saveNotes();
+        System.out.println("New Notes: " + note);
+    }
+
     public List<Note> getNotes() {
         return notes;
     }

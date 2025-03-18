@@ -25,7 +25,7 @@ public class AddCategoryServlet extends HttpServlet {
         }
 
         // Redirect back to the category list page
-        response.sendRedirect("indexNotesCategories.jsp");
+        response.sendRedirect("indexCategories.jsp");
 
     }
 }

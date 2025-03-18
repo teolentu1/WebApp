@@ -1,4 +1,4 @@
-<%@ page import="uk.ac.ucl.model.NoteIndex, uk.ac.ucl.model.Note" %>
+<%@ page import="uk.ac.ucl.model.NoteIndex, uk.ac.ucl.model.Note, java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String noteTitle = request.getParameter("title");
@@ -44,6 +44,15 @@
         p {
             color: #666;
         }
+        .content-box {
+            text-align: left;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
         a {
             text-decoration: none;
             color: #d66;
@@ -53,7 +62,7 @@
         a:hover {
             color: #a44;
         }
-        input[type="button"] {
+        input[type="button"], button, input[type="submit"] {
             background-color: #d66;
             color: white;
             padding: 10px 20px;
@@ -63,7 +72,7 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        input[type="button"]:hover {
+        input[type="button"]:hover, button:hover, input[type="submit"]:hover {
             background-color: #a44;
         }
     </style>
@@ -72,7 +81,10 @@
     <div class="container">
         <% if (selectedNote != null) { %>
             <h2><%= selectedNote.getTitle() %></h2>
-            <p><%= selectedNote.getContent() %></p>
+            <div class="content-box">
+                <%= selectedNote.getContent() %>
+            </div>
+
             <% if (selectedNote.getUrl() != null && !selectedNote.getUrl().isEmpty()) { %>
                 <a href="<%= selectedNote.getUrl() %>" target="_blank">Open URL</a><br>
             <% } %>
@@ -81,10 +93,30 @@
                 <br>
                 <img src="<%= selectedNote.getImagePath() %>" width="100"><br>
             <% } %>
+
+            <%
+                List<String> categories = selectedNote.getCategories();
+                if (categories != null && !categories.isEmpty()) {
+                    String categoriesStr = String.join(", ", categories);
+            %>
+                <h4>Categories: <%= categoriesStr %></h4>
+            <% } %>
+
+            <form action="editNote.jsp" method="GET" style="display: inline;">
+                <input type="hidden" name="title" value="<%= selectedNote.getTitle() %>">
+                <input type="submit" value="Edit">
+            </form>
+
+            <form action="deleteNote" method="POST" style="display: inline;">
+                <input type="hidden" name="originalTitle" value="<%= selectedNote.getTitle() %>">
+                <input type="submit" value="Delete">
+            </form>
+
         <% } else { %>
             <p>Note not found.</p>
         <% } %>
-        <br>
+
+        <br><br>
         <input type="button" value="Back to Notes" onclick="window.location.href='indexNotes.jsp'">
     </div>
 </body>

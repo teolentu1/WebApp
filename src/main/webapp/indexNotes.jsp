@@ -37,7 +37,6 @@
             border-radius: 5px;
             padding: 10px;
             margin: 10px 0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         a {
             text-decoration: none;
@@ -69,7 +68,7 @@
         <h2>Your Notes</h2>
         <!-- Styled buttons -->
         <button onclick="window.location.href='addNote.jsp'">Add New Note</button>
-        <button onclick="window.location.href='indexNotesCategories.jsp'">See Notes by Category</button>
+        <button onclick="window.location.href='indexCategories.jsp'">See Notes by Category</button>
 
         <h3>All Notes</h3>
         <ul>

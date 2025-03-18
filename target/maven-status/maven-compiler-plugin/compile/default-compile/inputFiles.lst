@@ -5,5 +5,7 @@
 /Users/teo/COMP0004JavaWebAppExample/src/main/java/uk/ac/ucl/model/NoteIndex.java
 /Users/teo/COMP0004JavaWebAppExample/src/main/java/uk/ac/ucl/servlets/AddCategoryServlet.java
 /Users/teo/COMP0004JavaWebAppExample/src/main/java/uk/ac/ucl/servlets/AddNoteServlet.java
+/Users/teo/COMP0004JavaWebAppExample/src/main/java/uk/ac/ucl/servlets/DeleteNoteServlet.java
+/Users/teo/COMP0004JavaWebAppExample/src/main/java/uk/ac/ucl/servlets/EditNoteServlet.java
 /Users/teo/COMP0004JavaWebAppExample/src/main/java/uk/ac/ucl/servlets/SearchServlet.java
 /Users/teo/COMP0004JavaWebAppExample/src/main/java/uk/ac/ucl/servlets/ViewPatientListServlet.java
