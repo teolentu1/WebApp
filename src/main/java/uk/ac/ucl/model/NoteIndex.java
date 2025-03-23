@@ -70,6 +70,20 @@ public class NoteIndex {
         return notes;
     }
 
+    public Note findNote(String originalTitle) {
+        Note selectedNote = null;
+        if (originalTitle != null) {
+            for (Note note : NoteIndex.getInstance().getNotes()) {
+                if (note.getTitle().equals(originalTitle)) {
+                    selectedNote = note;
+                    break;
+                }
+            }
+        }
+        return selectedNote;
+    }
+
+
     public Map<String, List<Note>> getNotesByCategory() {
         Map<String, List<Note>> categorizedNotes = new HashMap<>();
 

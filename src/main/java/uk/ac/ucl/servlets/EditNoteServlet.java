@@ -13,40 +13,43 @@ import java.util.Arrays;
 
 @WebServlet("/editNote")
 public class EditNoteServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String title = request.getParameter("title");
+        Note selectedNote = NoteIndex.getInstance().findNote(title);
+
+        if (selectedNote != null) {
+            request.setAttribute("selectedNote", selectedNote);
+            request.getRequestDispatcher("editNote.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("viewNotes");
+        }
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String originalTitle = request.getParameter("originalTitle");  // To track the original note title
+        String originalTitle = request.getParameter("originalTitle");
         String title = request.getParameter("title");
         String content = request.getParameter("content");
         String url = request.getParameter("url");
         String imagePath = request.getParameter("imagePath");
         String[] selectedCategories = request.getParameterValues("categories");
 
-        // Find the note with the original title
-        Note selectedNote = null;
-        if (originalTitle != null) {
-            for (Note note : NoteIndex.getInstance().getNotes()) {
-                if (note.getTitle().equals(originalTitle)) {
-                    selectedNote = note;
-                    break;
-                }
-            }
-        }
+        Note selectedNote = NoteIndex.getInstance().findNote(originalTitle);
 
         if (selectedNote != null) {
-            // Update the note's details
             selectedNote.setTitle(title);
             selectedNote.setContent(content);
             selectedNote.setUrl(url);
             selectedNote.setImagePath(imagePath);
             selectedNote.setCategories(Arrays.asList(selectedCategories));
+            selectedNote.setDate();
 
-            // Redirect to a page that displays the updated note or the notes list
-            response.sendRedirect("viewNote.jsp?title=" + title);  // Assuming you have a page to view individual notes
+            response.sendRedirect("viewNotes?title=" + title);  // Assuming you have a page to view individual notes
         } else {
-            // If the note wasn't found, redirect back to the notes list
-            response.sendRedirect("indexNotes.jsp");
+            response.sendRedirect("viewNotes");
         }
     }
 }

@@ -102,7 +102,7 @@
                 <h4>Categories: <%= categoriesStr %></h4>
             <% } %>
 
-            <form action="editNote.jsp" method="GET" style="display: inline;">
+            <form action="editNote" method="GET" style="display: inline;">
                 <input type="hidden" name="title" value="<%= selectedNote.getTitle() %>">
                 <input type="submit" value="Edit">
             </form>
@@ -117,7 +117,7 @@
         <% } %>
 
         <br><br>
-        <input type="button" value="Back to Notes" onclick="window.location.href='indexNotes.jsp'">
+        <input type="button" value="Back to Notes" onclick="window.location.href='/viewNotes'">
     </div>
 </body>
 </html>

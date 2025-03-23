@@ -17,19 +17,10 @@ public class DeleteNoteServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String originalTitle = request.getParameter("originalTitle");
+        Note noteToDelete = NoteIndex.getInstance().findNote(originalTitle);
 
-        // Find the note with the original title
-        Note noteToDelete = null;
-        if (originalTitle != null) {
-            for (Note note : NoteIndex.getInstance().getNotes()) {
-                if (note.getTitle().equals(originalTitle)) {
-                    noteToDelete = note;
-                    break;
-                }
-            }
-        }
         NoteIndex.getInstance().deleteNote(noteToDelete);
         System.out.println("Note to delete: " + noteToDelete);
-        response.sendRedirect("indexNotes.jsp");
+        response.sendRedirect("viewNotes");
     }
 }

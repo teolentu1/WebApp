@@ -47,7 +47,7 @@
         a:hover {
             color: #a44;
         }
-        button {
+        button, input[type="submit"] {
             background-color: #d66;
             color: white;
             padding: 10px 20px;
@@ -57,36 +57,72 @@
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        button:hover {
+        button:hover, input[type="submit"]:hover{
             background-color: #a44;
+        }
+
+        button2 {
+            background-color: none;
+            padding: 10px 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <%
-            String category = request.getParameter("category");
-            NoteIndex noteIndex = NoteIndex.getInstance();
-            List<Note> notes = noteIndex.getNotesByCategory().get(category);
-        %>
-
+        <% String category = (String) request.getAttribute("category"); %>
         <h2>Notes in "<%= category %>"</h2>
 
+        <div style="margin-top: 10px;">
+            <button2 id="sortButton" onclick="toggleSortOrder()" style="background: none; border: none; color: lightpink; font-size: 16px; cursor: pointer;">↑</button2>
+            <strong>Sort by:</strong>
+            <a href="viewNotes?category=<%= category %>&sortBy=dateA&sortOrder=<%= request.getParameter("sortOrder") != null ? request.getParameter("sortOrder") : "asc" %>"
+               style="color: lightpink; text-decoration: none; padding: 0 5px;">Date Added</a>
+            <a href="viewNotes?category=<%= category %>&sortBy=dateM&sortOrder=<%= request.getParameter("sortOrder") != null ? request.getParameter("sortOrder") : "asc" %>"
+               style="color: lightpink; text-decoration: none; padding: 0 5px;">Date Modified</a>
+            <a href="viewNotes?category=<%= category %>&sortBy=alpha&sortOrder=<%= request.getParameter("sortOrder") != null ? request.getParameter("sortOrder") : "asc" %>"
+               style="color: lightpink; text-decoration: none; padding: 0 5px;">Alphabetically</a>
+        </div>
+
         <ul>
-            <% if (notes != null && !notes.isEmpty()) {
-                for (Note note : notes) { %>
-                    <li>
-                        <a href="viewNote.jsp?title=<%= java.net.URLEncoder.encode(note.getTitle(), "UTF-8") %>">
-                            <%= note.getTitle() %>
-                        </a>
-                    </li>
-            <% } } else { %>
-                <li>No notes available in this category.</li>
+            <%
+                List<Note> notes = (List<Note>) request.getAttribute("notes");
+                for (Note note : notes) {
+            %>
+                <li>
+                    <a href="viewNote.jsp?title=<%= java.net.URLEncoder.encode(note.getTitle(), "UTF-8") %>">
+                        <%= note.getTitle() %>
+                    </a>
+                </li>
             <% } %>
         </ul>
 
         <br>
-        <button onclick="window.history.back();">Back</button>
+        <button onclick="window.location.href='addNote.jsp'">Add New Note</button>
+        <form action="deleteNote" method="POST" style="display: inline;">
+            <input type="hidden" name="selectedCategory" value="category">
+            <input type="submit" value="Delete">
+        </form>
+        <br>
+        <button style="margin-top:5px" onclick="window.location.href='indexCategories.jsp'">Back</button>
     </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        let sortOrder = urlParams.get("sortOrder") || "asc";
+        document.getElementById("sortButton").innerHTML = sortOrder === "asc" ? "↑" : "↓";
+
+        function toggleSortOrder() {
+            sortOrder = sortOrder === "asc" ? "desc" : "asc";
+            document.getElementById("sortButton").innerHTML = sortOrder === "asc" ? "↑" : "↓";
+            urlParams.set("sortOrder", sortOrder);
+            window.location.search = urlParams.toString();
+        }
+    </script>
+
 </body>
 </html>

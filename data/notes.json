@@ -1,34 +1,32 @@
 {
   "notes" : [ {
-    "title" : "hi",
-    "content" : "hi",
-    "url" : "",
-    "imagePath" : "",
-    "categories" : [ "personal" ]
-  }, {
     "title" : "groceries",
     "content" : "lemons",
     "url" : "",
     "imagePath" : "",
+    "date" : "2025-03-23 20:13:43",
+    "categories" : [ "personal" ]
+  }, {
+    "title" : "hello",
+    "content" : "pdf",
+    "url" : "",
+    "imagePath" : "",
+    "date" : "2025-03-23 20:13:43",
+    "categories" : [ ]
+  }, {
+    "title" : "hi",
+    "content" : "hi!!!",
+    "url" : "",
+    "imagePath" : "",
+    "date" : "2025-03-23 20:13:43",
     "categories" : [ "personal" ]
   }, {
     "title" : "presentation",
     "content" : "assign roles",
     "url" : "",
     "imagePath" : "",
+    "date" : "2025-03-23 20:13:43",
     "categories" : [ "hw" ]
-  }, {
-    "title" : "hello",
-    "content" : "pdf",
-    "url" : "",
-    "imagePath" : "",
-    "categories" : [ ]
-  }, {
-    "title" : "new",
-    "content" : "one",
-    "url" : "",
-    "imagePath" : "",
-    "categories" : [ "birthdays" ]
   } ],
-  "allCategories" : [ "personal", "hw", "birthdays" ]
+  "allCategories" : [ "personal", "hw", "birthdays", "teo's secret notes", "ideas" ]
 }

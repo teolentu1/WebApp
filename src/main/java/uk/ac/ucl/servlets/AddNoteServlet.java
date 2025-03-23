@@ -35,7 +35,7 @@ public class AddNoteServlet extends HttpServlet {
         NoteIndex.getInstance().addNote(newNote);
 
         // Redirect to the index page to show the updated notes list
-        response.sendRedirect("indexNotes.jsp");
+        response.sendRedirect("viewNotes");
     }
 
     @Override

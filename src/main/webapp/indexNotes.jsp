@@ -1,4 +1,4 @@
-<%@ page import="uk.ac.ucl.model.NoteIndex, uk.ac.ucl.model.Note" %>
+<%@ page import="uk.ac.ucl.model.Note, java.util.List, java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,18 +61,39 @@
         input[type="button"]:hover, button:hover {
             background-color: #a44;
         }
+        button2 {
+            background-color: none;
+            padding: 10px 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Your Notes</h2>
-        <!-- Styled buttons -->
         <button onclick="window.location.href='addNote.jsp'">Add New Note</button>
         <button onclick="window.location.href='indexCategories.jsp'">See Notes by Category</button>
 
-        <h3>All Notes</h3>
+        <div style="margin-top: 10px;">
+            <button2 id="sortButton" onclick="toggleSortOrder()" style="background: none; border: none; color: lightpink; font-size: 16px; cursor: pointer;">↑</button2>
+            <strong>Sort by:</strong>
+            <a href="viewNotes?sortBy=dateA&sortOrder=<%= request.getParameter("sortOrder") != null ? request.getParameter("sortOrder") : "asc" %>"
+               style="color: lightpink; text-decoration: none; padding: 0 5px;">Date Added</a>
+            <a href="viewNotes?sortBy=dateM&sortOrder=<%= request.getParameter("sortOrder") != null ? request.getParameter("sortOrder") : "asc" %>"
+               style="color: lightpink; text-decoration: none; padding: 0 5px;">Date Modified</a>
+            <a href="viewNotes?sortBy=alpha&sortOrder=<%= request.getParameter("sortOrder") != null ? request.getParameter("sortOrder") : "asc" %>"
+               style="color: lightpink; text-decoration: none; padding: 0 5px;">Alphabetically</a>
+        </div>
+
         <ul>
-            <% for (Note note : NoteIndex.getInstance().getNotes()) { %>
+            <%
+            List<Note> notes = (List<Note>) request.getAttribute("notes");
+            for (Note note : notes) {
+            %>
                 <li>
                     <a href="viewNote.jsp?title=<%= java.net.URLEncoder.encode(note.getTitle(), "UTF-8") %>">
                         <%= note.getTitle() %>
@@ -83,5 +104,18 @@
 
         <br><button onclick="window.history.back();">Back</button>
     </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        let sortOrder = urlParams.get("sortOrder") || "asc";
+        document.getElementById("sortButton").innerHTML = sortOrder === "asc" ? "↑" : "↓";
+
+        function toggleSortOrder() {
+            sortOrder = sortOrder === "asc" ? "desc" : "asc";
+            document.getElementById("sortButton").innerHTML = sortOrder === "asc" ? "↑" : "↓";
+            urlParams.set("sortOrder", sortOrder);
+            window.location.search = urlParams.toString();
+        }
+    </script>
 </body>
 </html>

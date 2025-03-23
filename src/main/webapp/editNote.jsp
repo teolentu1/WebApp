@@ -113,21 +113,11 @@
   <div class="container">
     <h2>Edit Note</h2>
     <%
-        // Retrieve the title of the note to edit
         String noteTitle = request.getParameter("title");
-        Note selectedNote = null;
-        if (noteTitle != null) {
-            // Find the note with the specified title
-            for (Note note : NoteIndex.getInstance().getNotes()) {
-                if (note.getTitle().equals(noteTitle)) {
-                    selectedNote = note;
-                    break;
-                }
-            }
-        }
+        Note selectedNote = NoteIndex.getInstance().findNote(noteTitle);
     %>
     <% if (selectedNote != null) { %>
-      <form action="editNote" method="post">
+      <form action="editNote" method="POST">
         <input type="hidden" name="originalTitle" value="<%= selectedNote.getTitle() %>">
 
         <label for="title">Title:</label>
