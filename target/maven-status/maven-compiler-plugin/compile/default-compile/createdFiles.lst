@@ -6,8 +6,8 @@ uk/ac/ucl/servlets/EditNoteServlet.class
 uk/ac/ucl/model/NoteIndex.class
 uk/ac/ucl/model/Note.class
 uk/ac/ucl/model/ModelFactory.class
-uk/ac/ucl/servlets/SearchNotesServlet.class
 uk/ac/ucl/servlets/AddNoteServlet.class
+uk/ac/ucl/controller/SearchNotesServlet.class
 uk/ac/ucl/servlets/AddCategoryServlet.class
 uk/ac/ucl/servlets/ViewPatientListServlet.class
 uk/ac/ucl/model/Model$1.class
