@@ -102,7 +102,7 @@
             <% } %>
         </ul>
 
-        <br><button onclick="window.history.back();">Back</button>
+        <br><button onclick="window.location.href='index.html'">Back to Home</button>
     </div>
 
     <script>

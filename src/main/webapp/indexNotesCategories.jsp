@@ -103,9 +103,9 @@
 
         <br>
         <button onclick="window.location.href='addNote.jsp'">Add New Note</button>
-        <form action="deleteNote" method="POST" style="display: inline;">
-            <input type="hidden" name="selectedCategory" value="category">
-            <input type="submit" value="Delete">
+        <form action="deleteCategory" method="POST" style="display: inline;">
+            <input type="hidden" name="selectedCategory" value="<%= category %>">
+            <input type="submit" value="Delete Category">
         </form>
         <br>
         <button style="margin-top:5px" onclick="window.location.href='indexCategories.jsp'">Back</button>

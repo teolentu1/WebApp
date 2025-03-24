@@ -32,7 +32,6 @@ public class ViewNotesListServlet extends HttpServlet {
             Map<String, List<Note>> notesByCategory = noteIndex.getNotesByCategory();
             notes = notesByCategory.getOrDefault(category, Collections.emptyList());
         }
-        System.out.println("Retrieved Notes: " + (notes == null ? "null" : notes.size()));
 
         if (sortBy != null) {
             switch (sortBy) {
@@ -50,7 +49,6 @@ public class ViewNotesListServlet extends HttpServlet {
             if ("desc".equals(sortOrder)) {
                 Collections.reverse(notes);
             }
-
         }
 
         request.setAttribute("notes", notes);
